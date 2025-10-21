@@ -1,6 +1,6 @@
 // src/pages/Projects.tsx
 import React, { useEffect, useState, useMemo } from 'react';
-import api from '../api/axios';
+import {api} from '../api/axios';
 import ProjectCard from '../components/ProjectCard';
 import { Project } from '../hooks/useProjects';
 import { getProgressPercentage } from '../utils/helpers';

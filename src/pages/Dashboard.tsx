@@ -7,7 +7,7 @@ import TaskForm from '../components/TaskForm';
 import ProgressChart from '../components/ProgressChart';
 import { getProgressPercentage } from '../utils/helpers';
 import { useTasks } from '../hooks/useTasks';
-import api from '../api/axios';
+import {api} from '../api/axios';
 import axios from 'axios';
 
 const Dashboard: React.FC = () => {
