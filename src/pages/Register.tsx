@@ -2,7 +2,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck, faTimes, faCircle } from '@fortawesome/free-solid-svg-icons';
-import api from '../api/axios';
+import {api} from '../api/axios';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
 

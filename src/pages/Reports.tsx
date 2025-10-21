@@ -1,7 +1,7 @@
 // src/pages/Reports.tsx
 import React, { useEffect, useState, useMemo } from 'react';
-import { Project } from './Dashboard';
-import api from '../api/axios';
+import { Project } from '../types/project';
+import {api} from '../api/axios';
 import { exportProjectsPDF, exportProjectsExcel } from '../utils/export';
 import { getProgressPercentage } from '../utils/helpers';
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
