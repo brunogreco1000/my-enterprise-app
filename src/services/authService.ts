@@ -1,5 +1,5 @@
 // src/services/authService.ts
-import api from '../api/axios';
+import {api} from '../api/axios';
 
 interface LoginPayload {
   email: string;

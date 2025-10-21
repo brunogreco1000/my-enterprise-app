@@ -1,6 +1,6 @@
 // src/hooks/useTasks.ts
 import { useState, useEffect } from 'react';
-import api from '../api/axios';
+import {api} from '../api/axios';
 
 export interface Task {
   _id?: string;

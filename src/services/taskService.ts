@@ -1,6 +1,6 @@
 // src/services/taskService.ts
-import api from '../api/axios';
-import { Task } from '../pages/Dashboard';
+import {api} from '../api/axios';
+import { Task } from '../types/Task';
 
 export const taskService = {
   create: async (task: Omit<Task, '_id'>): Promise<Task> => {

@@ -1,6 +1,6 @@
 // src/services/projectService.ts
-import api from '../api/axios';
-import { Project } from '../pages/Dashboard';
+import {api }from '../api/axios';
+import { Project } from '../types/project';
 
 export const projectService = {
   getAll: async (): Promise<Project[]> => {

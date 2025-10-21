@@ -1,7 +1,7 @@
 // src/hooks/useAuth.ts
 import { useContext } from 'react';
 import { AuthContext, AuthContextType, User } from '../context/AuthContext';
-import api from '../api/axios';
+import {api} from '../api/axios';
 
 export const useAuth = () => {
   const { isLoggedIn, login, logout, user } = useContext<AuthContextType>(AuthContext);
