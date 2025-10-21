@@ -2,7 +2,9 @@
   "name": "my-enterprise-backend",
   "version": "1.0.0",
   "scripts": {
-    "dev": "nodemon --watch ./ --ext ts --exec \"ts-node server.ts\""
+    "dev": "nodemon --watch ./ --ext ts --exec \"ts-node server.ts\"",
+    "build": "tsc",
+    "start": "node dist/server.js"
   },
   "dependencies": {
     "bcrypt": "^6.0.0",
