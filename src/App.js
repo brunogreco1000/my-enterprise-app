@@ -1,0 +1,18 @@
+import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
+import { Suspense, memo } from 'react';
+import { Routes, Route, Navigate } from 'react-router-dom';
+import Loader from './components/Loader';
+import ErrorBoundary from './components/ErrorBoundary';
+import Navbar from './components/Navbar';
+import Footer from './components/Footer';
+import PrivateRoute from './components/PrivateRoute';
+import { lazyWithDefault } from './utils/helpers';
+const Dashboard = lazyWithDefault(() => import('./pages/Dashboard'));
+const About = lazyWithDefault(() => import('./pages/About'));
+const Contact = lazyWithDefault(() => import('./pages/Contact'));
+const Login = lazyWithDefault(() => import('./pages/Login'));
+const Register = lazyWithDefault(() => import('./pages/Register'));
+const MemoNavbar = memo(Navbar);
+const MemoFooter = memo(Footer);
+const App = () => (_jsxs("div", { className: "min-h-screen flex flex-col bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-100", children: [_jsx(MemoNavbar, {}), _jsx("main", { className: "flex-grow", children: _jsx(ErrorBoundary, { fallback: _jsx("div", { className: "p-6 text-center", children: "Oops! Algo sali\u00F3 mal." }), children: _jsx(Suspense, { fallback: _jsx(Loader, {}), children: _jsxs(Routes, { children: [_jsx(Route, { path: "/", element: _jsx(PrivateRoute, { children: _jsx(Dashboard, {}) }) }), _jsx(Route, { path: "/about", element: _jsx(About, {}) }), _jsx(Route, { path: "/contact", element: _jsx(Contact, {}) }), _jsx(Route, { path: "/login", element: _jsx(Login, {}) }), _jsx(Route, { path: "/register", element: _jsx(Register, {}) }), _jsx(Route, { path: "*", element: _jsx(Navigate, { to: "/", replace: true }) })] }) }) }) }), _jsx(MemoFooter, {})] }));
+export default App;

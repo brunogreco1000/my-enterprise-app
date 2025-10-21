@@ -1,7 +1,7 @@
 // src/utils/export.ts
 import jsPDF from 'jspdf';
 import * as XLSX from 'xlsx';
-import { Project } from '../pages/Dashboard';
+import { Project } from '../types/project';
 
 export const exportProjectsPDF = (projects: Project[]) => {
   const doc = new jsPDF();
