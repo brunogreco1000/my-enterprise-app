@@ -1,3 +1,4 @@
+import '@testing-library/jest-dom';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import { vi } from 'vitest';
@@ -19,6 +20,7 @@ describe('Navbar Component', () => {
             user: isLoggedIn ? { username: 'testuser', email: 'test@example.com' } as UserType : null,
             login: mockLogin,
             logout: mockLogout,
+            isLoading: false
           }}
         >
           <ThemeContext.Provider value={{ theme, toggleTheme: mockToggleTheme }}>

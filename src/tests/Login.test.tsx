@@ -1,3 +1,4 @@
+import '@testing-library/jest-dom';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import { vi } from 'vitest';
@@ -13,6 +14,7 @@ describe('Login Component', () => {
     user: null,
     login: mockLogin,
     logout: mockLogout,
+    isLoading: false
   };
 
   beforeEach(() => {

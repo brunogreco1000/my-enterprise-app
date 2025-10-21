@@ -1,3 +1,4 @@
+import '@testing-library/jest-dom';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import { vi } from 'vitest';
@@ -27,6 +28,7 @@ describe('Register Component', () => {
   const mockAuthContext = {
     isLoggedIn: false,
     user: null,
+    isLoading: false,
     login: mockLogin,
     logout: mockLogout,
   };
