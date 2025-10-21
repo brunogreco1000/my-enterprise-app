@@ -19,8 +19,8 @@ const app = express();
 
 // --- Configuración de CORS ---
 const allowedOrigins = [
-  'http://localhost:3000', // desarrollo
-  'https://my-enterprise-app-lac.vercel.app' // producción
+  'http://localhost:3000', // desarrollo local
+  'https://my-enterprise-pi8y47jux-bruno-grecos-projects.vercel.app' // frontend desplegado
 ];
 
 app.use(cors({
@@ -43,7 +43,9 @@ app.use('/api/projects', authMiddleware, projectRoutes);
 app.use('/api/tasks', authMiddleware, taskRoutes);
 
 // --- Ruta de prueba para usuario autenticado ---
-app.get('/api/auth/me', authMiddleware, async (req: any, res: Response) => {
+import { AuthRequest } from './middleware/authMiddleware';
+app.get('/api/auth/me', authMiddleware, async (req: AuthRequest, res: Response) => {
+  if (!req.user) return res.status(401).json({ message: 'Usuario no autenticado' });
   res.json({ user: req.user });
 });
 
