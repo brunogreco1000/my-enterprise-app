@@ -17,7 +17,10 @@ connectDB();
 const app = express();
 
 // --- Middlewares Iniciales ---
-app.use(cors({ origin: 'https://my-enterprise-app.vercel.app', credentials: true }));
+app.use(cors({
+  origin: 'https://my-enterprise-app-lac.vercel.app', // el dominio de tu frontend
+  credentials: true, // permite cookies con withCredentials
+}));
 app.use(cookieParser());
 app.use(express.json());
 

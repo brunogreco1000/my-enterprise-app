@@ -10,7 +10,8 @@
     "lint": "eslint . --ext .ts,.tsx,.js,.jsx",
     "test": "vitest",
     "test:watch": "vitest --watch",
-    "cypress:open": "cypress open"
+    "cypress:open": "cypress open",
+    "serve:prod": "serve -s backend/dist --ssl-cert localhost+2.pem --ssl-key localhost+2-key.pem"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^7.1.0",
