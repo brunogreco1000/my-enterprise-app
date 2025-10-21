@@ -1,5 +1,4 @@
-// server.ts (Limpio y Funcional con Express v5)
-
+// server.ts
 import dotenv from 'dotenv';
 dotenv.config();
 
@@ -7,42 +6,57 @@ import express, { Request, Response, NextFunction } from 'express';
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
 
+// Importa tus rutas y middleware
 import connectDB from './config/db';
 import authRoutes from './routes/authRoutes';
 import projectRoutes from './routes/projectRoutes';
 import taskRoutes from './routes/taskRoutes';
+import authMiddleware from './middleware/authMiddleware';
 
 connectDB();
 
 const app = express();
 
-// --- Middlewares Iniciales ---
+// --- Configuración de CORS ---
+const allowedOrigins = [
+  'http://localhost:3000', // desarrollo
+  'https://my-enterprise-app-lac.vercel.app' // producción
+];
+
 app.use(cors({
-  origin: 'https://my-enterprise-app-lac.vercel.app', // el dominio de tu frontend
-  credentials: true, // permite cookies con withCredentials
+  origin: (origin, callback) => {
+    if (!origin || allowedOrigins.includes(origin)) callback(null, true);
+    else callback(new Error('CORS no permitido'));
+  },
+  credentials: true, // permite cookies
 }));
+
+// --- Middlewares ---
 app.use(cookieParser());
 app.use(express.json());
 
-// --- Definición de Rutas ---
+// --- Rutas públicas ---
 app.use('/api/auth', authRoutes);
-app.use('/api/projects', projectRoutes);
-app.use('/api/tasks', taskRoutes);
 
-// --- 🛑 Middleware de Manejo de Errores Final ---
-// (Esencial para capturar todos los errores pasados por next(error))
-app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
-    console.error(err.stack); 
-    
-    // Si el error fue un 401 o 404 manejado previamente, usa ese status.
-    const statusCode = res.statusCode === 200 ? 500 : res.statusCode; 
-    
-    res.status(statusCode).json({
-        message: 'Error interno del servidor.',
-        error: process.env.NODE_ENV === 'development' ? err.message : {}
-    });
+// --- Rutas protegidas (requieren authMiddleware) ---
+app.use('/api/projects', authMiddleware, projectRoutes);
+app.use('/api/tasks', authMiddleware, taskRoutes);
+
+// --- Ruta de prueba para usuario autenticado ---
+app.get('/api/auth/me', authMiddleware, async (req: any, res: Response) => {
+  res.json({ user: req.user });
 });
 
-// --- Inicio del Servidor ---
+// --- Middleware de manejo de errores ---
+app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
+  console.error(err.stack);
+  const statusCode = res.statusCode === 200 ? 500 : res.statusCode;
+  res.status(statusCode).json({
+    message: err.message,
+    stack: process.env.NODE_ENV === 'development' ? err.stack : {}
+  });
+});
+
+// --- Inicio del servidor ---
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`✅ Server running on port ${PORT}`));
