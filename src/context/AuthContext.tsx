@@ -1,5 +1,5 @@
 import React, { createContext, useState, useEffect, ReactNode } from 'react';
-import api from '../api/axios';
+import {api} from '../api/axios';
 
 export interface User {
   username: string;
