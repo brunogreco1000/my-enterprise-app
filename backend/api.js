@@ -1,6 +1,6 @@
-// backend/api.ts
-import server from './server';
+// backend/api.js
+const server = require('./dist/server').default;
 
-export default function handler(req: any, res: any) {
+module.exports = (req, res) => {
   server(req, res);
-}
+};
