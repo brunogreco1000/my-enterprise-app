@@ -6,11 +6,11 @@ import express, { Request, Response, NextFunction } from 'express';
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
 
-import connectDB from './config/db';
-import authRoutes from './routes/authRoutes';
-import projectRoutes from './routes/projectRoutes';
-import taskRoutes from './routes/taskRoutes';
-import authMiddleware, { AuthRequest } from './middleware/authMiddleware';
+import connectDB from '../config/db';
+import authRoutes from '../routes/authRoutes';
+import projectRoutes from '../routes/projectRoutes';
+import taskRoutes from '../routes/taskRoutes';
+import authMiddleware, { AuthRequest } from '../middleware/authMiddleware';
 
 // Conectar a la base de datos
 connectDB();
